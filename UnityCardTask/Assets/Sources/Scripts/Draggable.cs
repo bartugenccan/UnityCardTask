@@ -15,6 +15,17 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public Transform placeholderParent = null;
 
+    void Start()
+    {
+
+ 
+    }
+    void Update()
+    {
+        
+    }
+
+    
     public void OnBeginDrag(PointerEventData eventData) 
     {
 

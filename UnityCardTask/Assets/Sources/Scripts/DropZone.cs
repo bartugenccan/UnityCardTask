@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
-
     public void OnPointerEnter(PointerEventData eventData)
     {
 
@@ -45,5 +44,6 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         {
             d.parentToReturn = this.transform;
         }
+
     }
 }
