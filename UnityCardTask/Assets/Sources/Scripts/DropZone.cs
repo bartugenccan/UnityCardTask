@@ -5,6 +5,14 @@ using UnityEngine.EventSystems;
 
 public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
+
+    Animator animator;
+
+    private void Start()
+    {
+        animator = gameObject.GetComponentInChildren<Animator>();
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
 
@@ -18,7 +26,15 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         if (d != null)
         {
             d.placeholderParent = this.transform;
+           
         }
+
+        //Cards no longer go up in Tabletop 
+        if(GameObject.Find("/CardParent/Card") || GameObject.Find("/CardParent (1)/Card") || GameObject.Find("/CardParent (2)/Card"))
+        {
+            animator.enabled = false;
+        }
+
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -35,6 +51,8 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         {
             d.placeholderParent = d.parentToReturn;
         }
+
+
     }
    public void OnDrop(PointerEventData eventData)
     {
@@ -45,5 +63,6 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
             d.parentToReturn = this.transform;
         }
 
+       
     }
 }

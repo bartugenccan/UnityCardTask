@@ -7,15 +7,20 @@ public class CardScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     Animator animator;
 
+    Transform rootParent;
     void Start()
     {
         animator = this.GetComponent<Animator>();
-      
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        animator.SetTrigger("Active");
+        if(this.transform.parent.parent.name != "Tabletop")
+        {
+            animator.SetTrigger("Active");
+        }
+
+   
     }
 
     public void OnPointerExit(PointerEventData eventData)

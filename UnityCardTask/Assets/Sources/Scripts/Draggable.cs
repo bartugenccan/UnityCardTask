@@ -15,9 +15,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public Transform placeholderParent = null;
 
+    Animator animator;
+
     void Start()
     {
-
+        animator = gameObject.GetComponentInChildren<Animator>();
  
     }
     void Update()
@@ -80,9 +82,12 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         this.transform.SetParent(parentToReturn);
         this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
+        animator.SetTrigger("Drop Active");
+      
 
         GetComponent<CanvasGroup>().blocksRaycasts = true;
 
         Destroy(placeholder);
+
     }
 }
