@@ -19,13 +19,16 @@ public class CardScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             animator.SetTrigger("Active");
         }
-
-   
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        animator.SetTrigger("Back Active");
+
+        if (this.transform.parent.parent.name != "Tabletop")
+        {
+            animator.SetTrigger("Back Active");
+        }
+
 
     }
 }

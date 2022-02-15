@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler 
 {
     // Dropped card's return spot.
     public Transform parentToReturn = null;
-
     // Placeholder for the selected card.
     GameObject placeholder = null;
 
@@ -46,6 +46,9 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         this.transform.SetParent(this.transform.parent.parent);
 
         GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+        //oldVector = this.transform.position;
+        Debug.Log(placeholder.transform.position);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -80,6 +83,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnEndDrag(PointerEventData eventData)
     {
 
+        this.transform.DOMove(placeholder.transform.position, 1f);
         this.transform.SetParent(parentToReturn);
         this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
         animator.SetTrigger("Drop Active");
